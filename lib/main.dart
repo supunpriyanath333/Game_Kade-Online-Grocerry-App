@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:game_kade/screens/splash_screen.dart'; // Ensure 'game_kade' matches your pubspec.yaml name
+import 'package:game_kade/screens/splash_screen.dart'; 
 
 void main() {
-  runApp(const GameKadeApp());
+  // REMOVED 'const' from here
+  runApp(const GameKadeApp()); 
 }
 
 class GameKadeApp extends StatelessWidget {
@@ -10,9 +11,9 @@ class GameKadeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return const MaterialApp( // Adding 'const' here is fine if the child allows it
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: SplashScreen(), // If this still errors, remove 'const' from MaterialApp
     );
   }
 }

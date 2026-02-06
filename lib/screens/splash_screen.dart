@@ -24,10 +24,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _controller.forward();
 
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
-      );
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+        );
+      }
     });
   }
 
@@ -40,16 +42,17 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF53B175), // Inline brand green
+      backgroundColor: const Color(0xFF53B175), // Your brand green
       body: Center(
         child: FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            child: const Icon(
-              Icons.shopping_basket, // Placeholder for your logo
-              size: 150, 
-              color: Colors.white,
+            // UPDATED: Replaced Icon with your local asset logo
+            child: Image.asset(
+              'assets/images/logo.png',
+              width: 200, // Slightly larger for the splash effect
+              color: Colors.white, // Colors the logo white to contrast with green
             ),
           ),
         ),
