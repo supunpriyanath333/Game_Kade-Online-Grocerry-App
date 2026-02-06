@@ -17,7 +17,7 @@ class LoginScreen extends StatelessWidget {
               // 1. Carrot Logo
               Center(
                 child: Image.network(
-                  'https://cdn-icons-png.flaticon.com/512/2347/2347031.png', // Use your assets/images/orange_carrot.png
+                  'https://cdn-icons-png.flaticon.com/512/2347/2347031.png', 
                   height: 60,
                 ),
               ),
@@ -45,13 +45,23 @@ class LoginScreen extends StatelessWidget {
               // 3. Email Field
               const Text(
                 "Email",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color.fromARGB(255, 14, 12, 12)),
               ),
+              const SizedBox(height: 10),
               const TextField(
                 decoration: InputDecoration(
                   hintText: "Enter your email address",
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black12)),
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFF53B175))),
+                  contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  // Full Border when not active
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                  ),
+                  // Full Border when typing
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Color(0xFF53B175), width: 2.5),
+                  ),
                 ),
               ),
               const SizedBox(height: 30),
@@ -59,15 +69,25 @@ class LoginScreen extends StatelessWidget {
               // 4. Password Field
               const Text(
                 "Password",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.grey),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Color.fromARGB(255, 17, 17, 17)),
               ),
+              const SizedBox(height: 10),
               const TextField(
                 obscureText: true,
                 decoration: InputDecoration(
                   hintText: "Enter your password",
                   suffixIcon: Icon(Icons.visibility_off_outlined, color: Colors.grey),
-                  enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.black12)),
-                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Color(0xFF53B175))),
+                  contentPadding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                  // Full Border when not active
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Colors.black12, width: 2.0),
+                  ),
+                  // Full Border when typing
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(15)),
+                    borderSide: BorderSide(color: Color(0xFF53B175), width: 2.5),
+                  ),
                 ),
               ),
               
@@ -90,7 +110,7 @@ class LoginScreen extends StatelessWidget {
                 height: 65,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Handle login logic
+                    // Navigate to Home Screen
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF53B175),
@@ -105,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 25),
 
               // 7. Signup Link
               Row(
@@ -115,12 +135,13 @@ class LoginScreen extends StatelessWidget {
                   GestureDetector(
                     onTap: () {},
                     child: const Text(
-                      "Singup", // Kept the typo "Singup" from your UI image
-                      style: TextStyle(color: Color(0xFF53B175), fontWeight: FontWeight.w600),
+                      "Singup", 
+                      style: TextStyle(color: Color(0xFF53B175), fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
               ),
+              const SizedBox(height: 20),
             ],
           ),
         ),
