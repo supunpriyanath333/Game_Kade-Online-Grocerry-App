@@ -10,13 +10,14 @@ class GameKadeApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const SplashScreen(), // App starts here
+      home: SplashScreen(),
     );
   }
 }
 
+// --- FLASH SCREEN (LOGO ONLY) ---
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -31,18 +32,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-
-    // 1. Setup Animation (Takes 2 seconds)
     _controller = AnimationController(
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
       vsync: this,
     );
-
     _animation = CurvedAnimation(parent: _controller, curve: Curves.easeIn);
     _controller.forward();
 
-    // 2. Timer to switch screen after 3 seconds
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -59,37 +56,18 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF53B175), // The green from your screenshot
+      backgroundColor: const Color(0xFF53B175), 
       body: Center(
         child: FadeTransition(
           opacity: _animation,
           child: ScaleTransition(
             scale: _animation,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Logo Icon (We'll use a carrot icon for now like your image)
-                const Icon(Icons.shopping_basket, size: 80, color: Colors.white),
-                const SizedBox(height: 10),
-                // App Name
-                const Text(
-                  "game kade",
-                  style: TextStyle(
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 1.5,
-                  ),
-                ),
-                const Text(
-                  "online groceries",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    letterSpacing: 2,
-                  ),
-                ),
-              ],
+            // Replace this Icon with Image.asset('assets/images/logo.png') 
+            // once you have added your image to pubspec.yaml
+            child: const Icon(
+              Icons.shopping_basket, 
+              size: 150, 
+              color: Colors.white,
             ),
           ),
         ),
@@ -98,15 +76,27 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   }
 }
 
-// Simple Home Screen Placeholder
+// --- HOME SCREEN ---
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Game Kade Home")),
-      body: const Center(child: Text("Welcome to Matara's Best Shop!")),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF53B175),
+        title: const Text(
+          "Game Kade - Matara",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+      ),
+      body: const Center(
+        child: Text(
+          "Welcome to the Shop!",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+        ),
+      ),
     );
   }
 }
