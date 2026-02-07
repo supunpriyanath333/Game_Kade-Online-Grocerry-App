@@ -51,6 +51,7 @@ class LocationSelectionScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               SizedBox(
+                height: 50,
                 width: 150,
                 child: CustomButton(
                   label: "View",
