@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
-// import 'location_selection_screen.dart'; // Create this file next
+import 'location_selection_screen.dart';
 
 class VerificationScreen extends StatelessWidget {
-  final String email; // Add this to receive the email
+  final String email;
 
   const VerificationScreen({super.key, required this.email});
 
   void _showSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
-      barrierDismissible: false, // User must click OK
+      barrierDismissible: false,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         content: Column(
@@ -39,9 +39,11 @@ class VerificationScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pop(context); // Close dialog
-                  // Navigate to location selection
-                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LocationSelectionScreen()));
-                  print("Navigate to Location Selection");
+                  // Navigate to the Location Selection Screen
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const LocationSelectionScreen()),
+                  );
                 },
                 child: const Text("OK", style: TextStyle(color: Colors.white, fontSize: 18)),
               ),
@@ -75,7 +77,6 @@ class VerificationScreen extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.3),
             ),
             const SizedBox(height: 10),
-            // SHOW THE USER'S EMAIL HERE
             Row(
               children: [
                 const Text("Your E-mail - ", style: TextStyle(color: Colors.grey, fontSize: 14)),
@@ -99,12 +100,17 @@ class VerificationScreen extends StatelessWidget {
                 _buildCodeBox(context),
               ],
             ),
-            const SizedBox(height: 20),
+            // Aligned to match your uploaded Verification.png
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
-                child: const Text("Resend Code", style: TextStyle(color: Color(0xFF53B175), fontSize: 16)),
+                onPressed: () {
+                  // Resend logic here
+                },
+                child: const Text(
+                  "Resend Code", 
+                  style: TextStyle(color: Color(0xFF53B175), fontSize: 16)
+                ),
               ),
             ),
             const Spacer(),
