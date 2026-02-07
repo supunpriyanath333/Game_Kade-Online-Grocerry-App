@@ -4,12 +4,14 @@ class CustomTextField extends StatefulWidget {
   final String label;
   final String hint;
   final bool isPassword;
+  final TextEditingController? controller; // Added to capture input
 
   const CustomTextField({
     super.key,
     required this.label,
     required this.hint,
     this.isPassword = false,
+    this.controller, // Added to constructor
   });
 
   @override
@@ -17,13 +19,11 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-  // Fix: Don't use 'late'. Initialize it right here.
   bool _isObscured = false;
 
   @override
   void initState() {
     super.initState();
-    // This will set the initial state correctly when the widget is first created
     _isObscured = widget.isPassword;
   }
 
@@ -42,6 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ),
         const SizedBox(height: 5),
         TextField(
+          controller: widget.controller, // Connected the controller here
           obscureText: _isObscured,
           decoration: InputDecoration(
             hintText: widget.hint,

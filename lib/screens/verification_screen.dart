@@ -1,8 +1,56 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
+// import 'location_selection_screen.dart'; // Create this file next
 
 class VerificationScreen extends StatelessWidget {
-  const VerificationScreen({super.key});
+  final String email; // Add this to receive the email
+
+  const VerificationScreen({super.key, required this.email});
+
+  void _showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false, // User must click OK
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.check_circle, color: Color(0xFF53B175), size: 80),
+            const SizedBox(height: 20),
+            const Text(
+              "Success!",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              "Your email has been verified successfully.",
+              textAlign: TextAlign.center,
+              style: TextStyle(color: Colors.grey),
+            ),
+            const SizedBox(height: 25),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF53B175),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                  padding: const EdgeInsets.symmetric(vertical: 15),
+                ),
+                onPressed: () {
+                  Navigator.pop(context); // Close dialog
+                  // Navigate to location selection
+                  // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LocationSelectionScreen()));
+                  print("Navigate to Location Selection");
+                },
+                child: const Text("OK", style: TextStyle(color: Colors.white, fontSize: 18)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,20 +72,24 @@ class VerificationScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const Text(
               "Enter your 4-digit code which we\nsend to your E-mail",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                height: 1.3,
-              ),
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, height: 1.3),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            // SHOW THE USER'S EMAIL HERE
+            Row(
+              children: [
+                const Text("Your E-mail - ", style: TextStyle(color: Colors.grey, fontSize: 14)),
+                Text(email, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
+                const SizedBox(width: 5),
+                const Icon(Icons.edit, size: 16, color: Color(0xFF53B175)),
+              ],
+            ),
+            const SizedBox(height: 30),
             const Text(
               "Code",
               style: TextStyle(fontSize: 16, color: Colors.grey, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 10),
-            
-            // 4-Digit Input Row
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,28 +99,18 @@ class VerificationScreen extends StatelessWidget {
                 _buildCodeBox(context),
               ],
             ),
-            
             const SizedBox(height: 20),
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {
-                  // Resend logic
-                },
-                child: const Text(
-                  "Resend Code",
-                  style: TextStyle(color: Color(0xFF53B175), fontSize: 16),
-                ),
+                onPressed: () {},
+                child: const Text("Resend Code", style: TextStyle(color: Color(0xFF53B175), fontSize: 16)),
               ),
             ),
-            
             const Spacer(),
-            
             CustomButton(
               label: "Next",
-              onPressed: () {
-                // Navigate to Location Check or Home
-              },
+              onPressed: () => _showSuccessDialog(context),
             ),
             const SizedBox(height: 40),
           ],
@@ -77,7 +119,6 @@ class VerificationScreen extends StatelessWidget {
     );
   }
 
-  // Helper widget for the 4 individual digit boxes
   Widget _buildCodeBox(BuildContext context) {
     return Container(
       width: 65,
@@ -94,10 +135,7 @@ class VerificationScreen extends StatelessWidget {
         keyboardType: TextInputType.number,
         maxLength: 1,
         style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        decoration: const InputDecoration(
-          counterText: "",
-          border: InputBorder.none,
-        ),
+        decoration: const InputDecoration(counterText: "", border: InputBorder.none),
       ),
     );
   }
