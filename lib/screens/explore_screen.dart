@@ -10,14 +10,14 @@ class ExploreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Data list based on your Explore.jpg image
     final List<Map<String, String>> categories = [
-      {"name": "Fresh Vegetable", "image": "assets/images/veg_cat.png"},
-      {"name": "Fresh Fruits", "image": "assets/images/fruit_cat.png"},
-      {"name": "Fresh Meats", "image": "assets/images/meat_cat.png"},
-      {"name": "Rice", "image": "assets/images/rice_cat.png"},
-      {"name": "Dairy & Eggs", "image": "assets/images/dairy_cat.png"},
-      {"name": "Beverages", "image": "assets/images/bev_cat.png"},
-      {"name": "Noodles & Pasta", "image": "assets/images/noodle_cat.png"},
-      {"name": "Chips & Snacks", "image": "assets/images/chips_cat.png"},
+      {"name": "Fresh Vegetable", "image": "assets/images/veg.png"},
+      {"name": "Fresh Fruits", "image": "assets/images/fruit.png"},
+      {"name": "Fresh Meats", "image": "assets/images/meat.png"},
+      {"name": "Rice", "image": "assets/images/rice.png"},
+      {"name": "Dairy & Eggs", "image": "assets/images/dairy.png"},
+      {"name": "Beverages", "image": "assets/images/bev.png"},
+      {"name": "Noodles & Pasta", "image": "assets/images/noodle.png"},
+      {"name": "Chips & Snacks", "image": "assets/images/chips.png"},
     ];
 
     return Scaffold(
